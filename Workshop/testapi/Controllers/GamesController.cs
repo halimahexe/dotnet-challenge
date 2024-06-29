@@ -60,7 +60,7 @@ public class GamesController : ControllerBase
     public IEnumerable<Game> Delete( int id)
     {
         var game = games.Find(x => x.id == id);
-        games.Remove(game);
+        if (game != null) games.Remove(game);
         return games;
 // write code that delets the game with the id sent to the API then returns a list of games
         // List<Game> newGames = [];
@@ -72,9 +72,11 @@ public class GamesController : ControllerBase
         // return newGames;
     }
 
-//                 [HttpPost]
-//         public IEnumerable<Game>  AddGame( Game game)
-//         {
-// // write code that adds the game posted to this route then displays the list of games
-//         }
+    [HttpPost]
+        public IEnumerable<Game>  AddGame( Game game)
+        {
+// write code that adds the game posted to this route then displays the list of games
+            games.Add(game);
+            return games;
+        }
 }
