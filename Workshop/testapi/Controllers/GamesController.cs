@@ -23,7 +23,7 @@ public class GamesController : ControllerBase
             new Game{
                id = 1,
                teamOneName="London",
-               teamTwoName="Cardif",
+               teamTwoName="Cardiff",
                winner =1  
             },
              new Game{
@@ -53,16 +53,25 @@ public class GamesController : ControllerBase
     public IEnumerable<Game> Get()
     {
 // write code that causes the API to return the current list of games
+        return games;
     }
     
-        [HttpDelete]
-        public IEnumerable<Game> Delete( int id)
-        {
-  // write code that delets the game with the id sent to the API then returns a list of games
+    [HttpDelete]
+    public IEnumerable<Game> Delete( int id)
+    {
+        List<Game> newGames = [];
+// write code that delets the game with the id sent to the API then returns a list of games
+        foreach (Game game in games) {
+            if (game.id != id) {
+                newGames.Add(game);
+            }
         }
-                [HttpPost]
-        public IEnumerable<Game>  AddGame( Game game)
-        {
-// write code that adds the game posted to this route then displays the list of games
-        }
+        return newGames;
+    }
+
+//                 [HttpPost]
+//         public IEnumerable<Game>  AddGame( Game game)
+//         {
+// // write code that adds the game posted to this route then displays the list of games
+//         }
 }
