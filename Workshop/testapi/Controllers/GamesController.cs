@@ -59,14 +59,17 @@ public class GamesController : ControllerBase
     [HttpDelete]
     public IEnumerable<Game> Delete( int id)
     {
-        List<Game> newGames = [];
+        var game = games.Find(x => x.id == id);
+        games.Remove(game);
+        return games;
 // write code that delets the game with the id sent to the API then returns a list of games
-        foreach (Game game in games) {
-            if (game.id != id) {
-                newGames.Add(game);
-            }
-        }
-        return newGames;
+        // List<Game> newGames = [];
+        // foreach (Game game in games) {
+        //     if (game.id != id) {
+        //         newGames.Add(game);
+        //     }
+        // }
+        // return newGames;
     }
 
 //                 [HttpPost]
